@@ -62,27 +62,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
-    // 4. Haul Parallax Effect
-    const truckLayer = document.getElementById('haul-truck');
-    const parallaxContainer = document.getElementById('haul-parallax');
-
-    if (truckLayer && parallaxContainer) {
-        window.addEventListener('scroll', () => {
-            const containerRect = parallaxContainer.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
-            
-            // Calculate progress from 0 (starts entering) to 1 (starts exiting)
-            if (containerRect.top < windowHeight && containerRect.bottom > 0) {
-                // Container is visible
-                const scrollDistance = windowHeight - containerRect.top;
-                const totalScrollable = windowHeight + containerRect.height;
-                const progress = Math.max(0, Math.min(1, scrollDistance / totalScrollable));
-                
-                // Map [0, 1] to [-50, 150]
-                const yOffset = -50 + (progress * 200);
-                truckLayer.style.transform = `translateY(${yOffset}px)`;
-            }
-        });
-    }
 });
