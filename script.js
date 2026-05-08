@@ -62,4 +62,28 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // 4. Initialize AOS (Animate On Scroll)
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 50,
+        });
+    }
+
+    // 5. Ambient Orb Mouse Tracking (Parallax)
+    const orbs = document.querySelectorAll('.orb');
+    if (orbs.length > 0 && window.matchMedia("(min-width: 768px)").matches) {
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            // Move orbs slightly opposite to mouse direction
+            orbs[0].style.transform = `translate(${x * -20}px, ${y * -20}px)`;
+            orbs[1].style.transform = `translate(${x * 30}px, ${y * 30}px)`;
+            orbs[2].style.transform = `translate(${x * -15}px, ${y * -15}px)`;
+        });
+    }
 });
